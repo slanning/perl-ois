@@ -95,8 +95,13 @@ InputManager::destroyInputObject(obj)
 static unsigned int
 InputManager::getVersionNumber()
 
+## for some reason, this is no longer a class method...
 string
 InputManager::getVersionName()
+  CODE:
+    RETVAL = THIS->getVersionNumber();
+  OUTPUT:
+    RETVAL
 
 ## const std::string& OIS::InputManager::inputSystemName
 string
