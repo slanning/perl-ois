@@ -95,18 +95,31 @@ InputManager::destroyInputObject(obj)
 static unsigned int
 InputManager::getVersionNumber()
 
-static const char *
+string
 InputManager::getVersionName()
 
 ## const std::string& OIS::InputManager::inputSystemName
 string
 InputManager::inputSystemName()
 
+## these used to be around in 1.0...
 int
 InputManager::numJoySticks()
+  CODE:
+    RETVAL = THIS->getNumberOfDevices(OIS::OISJoyStick);
+  OUTPUT:
+    RETVAL
 
 int
 InputManager::numMice()
+  CODE:
+    RETVAL = THIS->getNumberOfDevices(OIS::OISMouse);
+  OUTPUT:
+    RETVAL
 
 int
 InputManager::numKeyboards()
+  CODE:
+    RETVAL = THIS->getNumberOfDevices(OIS::OISKeyboard);
+  OUTPUT:
+    RETVAL
