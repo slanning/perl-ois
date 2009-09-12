@@ -1,5 +1,6 @@
-0.05  2009-09-12
+0.05  2009-09-13
 - updated to version 1.2.0 of OIS
+  (needs more work...)
 
 0.04  2007-12-04
 - fixed MouseState (I was doing "new MouseState", which meant that
