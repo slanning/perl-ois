@@ -4,6 +4,7 @@ Changes
 Makefile.PL
 typemap
 perlobject.map
+ois-rename.diff
 
 OIS.pm
 OIS.xs
@@ -53,4 +54,3 @@ OIS/Object.pm
 t/000_use.t
 t/010_inputmanager.t
 t/090_exception.t
-META.yml                                 Module meta-data (added by MakeMaker)

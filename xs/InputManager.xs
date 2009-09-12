@@ -103,10 +103,10 @@ string
 InputManager::inputSystemName()
 
 int
-InputManager::numJoysticks()
+InputManager::numJoySticks()
 
 int
 InputManager::numMice()
 
 int
-InputManager::numKeyBoards()
+InputManager::numKeyboards()

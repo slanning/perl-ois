@@ -1,5 +1,5 @@
-Perl-OIS version 0.04
-=====================
+Perl OIS
+========
 
 This is a Perl binding for OIS, Object-Oriented Input System,
 a crossplatform C++ input framework, found at
@@ -30,6 +30,19 @@ files needed to build against OIS, so you should be able to do this:
   pkg-config --modversion OIS
 
 This latter should say at least 1.0.0.
+
+Note: version 1.0.0 of OIS changed a couple methods from that
+of 0.99+1.0rc1.... and consequently compiling with 1.0 currently
+fails. Basically they changed numKeyBoards to numKeyboards
+and numJoysticks to numJoySticks. Madness! (Couldn't they at
+least provide aliases..?) If you have 1.0 installed, please try this
+before installing:
+
+  patch -p0 < ois-rename.diff
+
+I'll try to fix that once I figure out how to determine which version
+is installed. (Both return 1.0.0 with pkg-config. I guess I could
+try `strings /usr/lib/libOIS.so |fgrep numJoysticks`.)
 
 The C++ compiler used by default is `g++`, but you can specify a different
 C++ compiler by setting the CXX environmental variable. Anything more,
