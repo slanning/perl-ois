@@ -7,11 +7,12 @@ http://sourceforge.net/projects/wgois . I made it so that
 Ogre (http://search.cpan.org/~slanning/Ogre/ ) can be useful,
 but there might be uses outside of Ogre.
 
-The wrapping is currently fairly complete, but I'm focusing on being
+The wrapping isn't really complete, but I'm focusing on being
 able to use it with Ogre. (OIS::Component and OIS::ForceEffect, and their
-subclasses are basically the only parts not wrapped.)
+subclasses are basically the only parts not wrapped. Also changes
+between 1.0 and 1.2 aren't taken into account yet.)
 
-There is no documentation yet, which is no doubt frustrating.
+There is no documentation, which is no doubt frustrating.
 Then again, OIS itself isn't really very documented. :)
 There are examples in the Ogre module, and you can look at
 the (inadequate) tests under the t/ directory.
@@ -19,7 +20,7 @@ the (inadequate) tests under the t/ directory.
 
 DEPENDENCIES
 
-You should install the latest version of OIS. That's 1.0 as I'm writing this.
+You should install the latest version of OIS. That's 1.2 as I'm writing this.
 If you run Ubuntu, see below for installation instructions.
 
 Makefile.PL uses pkg-config to get information about the libraries and header
@@ -29,20 +30,7 @@ files needed to build against OIS, so you should be able to do this:
   pkg-config --cflags OIS
   pkg-config --modversion OIS
 
-This latter should say at least 1.0.0.
-
-Note: version 1.0.0 of OIS changed a couple methods from that
-of 0.99+1.0rc1.... and consequently compiling with 1.0 currently
-fails. Basically they changed numKeyBoards to numKeyboards
-and numJoysticks to numJoySticks. Madness! (Couldn't they at
-least provide aliases..?) If you have 1.0 installed, please try this
-before installing:
-
-  patch -p0 < ois-rename.diff
-
-I'll try to fix that once I figure out how to determine which version
-is installed. (Both return 1.0.0 with pkg-config. I guess I could
-try `strings /usr/lib/libOIS.so |fgrep numJoysticks`.)
+This latter should say at least 1.2.0.
 
 The C++ compiler used by default is `g++`, but you can specify a different
 C++ compiler by setting the CXX environmental variable. Anything more,
@@ -64,19 +52,27 @@ If so, please let me know.
 
 INSTALLING OIS UNDER UBUNTU
 
-To install OIS in Ubuntu,
+To install OIS in Ubuntu Jaunty,
 
-  $ sudo apt-get install libois1 libois-dev
+  sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 6FED7057
 
-In `dpkg -l libois-dev`, I have version 0.99+1.0rc1-1,
-though `pkg-config --modversion OIS` shows 1.0.0.
+  sudo gedit /etc/apt/sources.list
+
+and add these lines:
+
+  deb http://ppa.launchpad.net/andrewfenn/ogredev/ubuntu jaunty main
+  deb-src http://ppa.launchpad.net/andrewfenn/ogredev/ubuntu jaunty main 
+
+  sudo apt-get install libois1 libois-dev
+
+`pkg-config --modversion OIS` should be 1.2.0 .
 
 
 COPYRIGHT AND LICENCE
 
 Please report any bugs/suggestions to <slanning@cpan.org>
 
-Copyright 2007, Scott Lanning. All rights reserved.
+Copyright 2007, 2009 Scott Lanning. All rights reserved.
 
 This program is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
