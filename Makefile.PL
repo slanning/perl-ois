@@ -2,6 +2,8 @@ use ExtUtils::MakeMaker;
 use strict;
 use warnings;
 
+my $MIN_OIS_VERSION = '1.2.0';
+
 main();
 exit 0;
 
@@ -58,7 +60,7 @@ sub my_compiler {
 sub varied_args {
     # Make sure libs are known by pkg-config
     my @errors = ();
-    push @errors, check_pkg_config('OIS', '1.0.0');
+    push @errors, check_pkg_config('OIS', $MIN_OIS_VERSION);
     if (@errors) {
         die(map { "$_$/" } @errors);
     }
